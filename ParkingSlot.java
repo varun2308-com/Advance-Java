@@ -1,56 +1,40 @@
-package com.codegnan.pojo;
+package com.codegnan.entity;
 
+import javax.persistence.*;
+
+import lombok.*;
+
+@Entity
+@Table(name = "parking_slot")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class ParkingSlot {
-	private int slotId;
-	private String vehicleType;
-	private String status;
-	private double hourlyRate;
 
-	public ParkingSlot() {}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "slot_id")
+    private Integer slotId;
 
-	public ParkingSlot(int slotId, String vehicleType, String status, double hourlyRate) {
-		this.slotId = slotId;
-		this.vehicleType = vehicleType;
-		this.status = status;
-		this.hourlyRate = hourlyRate;
-	}
+    @Column(name = "vehicle_number")
+    private String vehicleNumber;
 
-	public int getSlotId() {
-		return slotId;
-	}
+    @Column(name = "vehicle_type")
+    private String vehicleType;
 
-	public void setSlotId(int slotId) {
-		this.slotId = slotId;
-	}
+    @Column(name = "owner_name")
+    private String ownerName;
 
-	public String getVehicleType() {
-		return vehicleType;
-	}
+    @Column(name = "status")
+    private String status; // AVAILABLE / OCCUPIED
 
-	public void setVehicleType(String vehicleType) {
-		this.vehicleType = vehicleType;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public double getHourlyRate() {
-		return hourlyRate;
-	}
-
-	public void setHourlyRate(double hourlyRate) {
-		this.hourlyRate = hourlyRate;
-	}
-
-	@Override
-	public String toString() {
-		return "ParkingSlot [slotId=" + slotId + ", vehicleType=" + vehicleType +
-				", status=" + status + ", hourlyRate=" + hourlyRate + "]";
-	}
+    public ParkingSlot(String vehicleNumber, String vehicleType,
+                       String ownerName, String status) {
+        this.vehicleNumber = vehicleNumber;
+        this.vehicleType = vehicleType;
+        this.ownerName = ownerName;
+        this.status = status;
+    }
 }
-
